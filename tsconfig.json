@@ -1,0 +1,18 @@
+{
+  "compilerOptions": { //tsc typescript를 javascript로 바꿔주는 컴파일러
+    "target": "es2019", //javascript 버전
+    "module": "commonjs", //javascript 모듈 종류
+    "strict": true, //javascript strict 옵션 사용 여부
+    "esModuleInterop": true, //export가 되지 않으면 모듈을 import할 수 없음
+    "resolveJsonModule": true, //json 파일을 모듈처럼 쓸 수 있음
+    "strictNullChecks": true, //Null 체크
+    "outDir": "dist", //컴파일 결과를 저장할 경로
+    "skipLibCheck": true, //node_modules에 있는 에러, 타입 체크를 스킵함
+  },
+  "exclude": [
+    "node_modules" //각각 컴파일에서 제외할 폴더, 포함할 폴더 위 두 내용은 기본값
+  ],
+  "include": [
+    "src/**/*" //각각 컴파일에서 제외할 폴더, 포함할 폴더 위 두 내용은 기본값
+  ]
+}
