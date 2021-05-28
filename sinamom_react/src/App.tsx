@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Text from './Text';
+import { useNum } from './Hooks/useNum';
+import { Link } from 'react-router-dom';
 
 const App: React.FC = () => {
-    const [num, setNum] = useState(1);
+    const [num, setNum] = useNum()!!;
 
+    const plus = useMemo(() => num + 1, [num]);
 
-    const addNum = () => {
+    const addNum = useCallback(() => {
         setNum((prevnum) => prevnum + 1);
-    }
+        console.log(plus);
+    }, [plus, setNum])
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -17,10 +21,12 @@ const App: React.FC = () => {
         return () => {
             clearInterval(timer);
         }
-    }, []);
+    }, [setNum]);
+
     return (
         <>
             <Text color="blue" onClick={addNum}>{num}</Text>
+            <Link to ="/b">B 페이지 이동</Link>
         </>
     );
 }
