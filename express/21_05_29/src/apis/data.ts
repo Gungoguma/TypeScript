@@ -10,9 +10,9 @@ router.post('/', validator, (req: Request, res: Response) => {
     if (!error.isEmpty()) {
         res.status(400).json({
             data: error.array(),
-    });
-    return;
-  }
+        });
+        return;
+    }
     const { name } = req.body;
 
     res.cookie('name', name);
@@ -31,18 +31,20 @@ router.post('/session', validator2, (req: Request, res: Response) => {
     if (!error.isEmpty()) {
         res.status(400).json({
             data: error.array(),
-    });
-    return;
-  }
+        });
+        return;
+    }
     const { id } = req.body;
 
     const sess = req.session as any;
     sess.userId = id;
 
-    console.log(req.session);
-
     res.sendStatus(200);
 });
+
+router.get('/session', (req, res) => {
+    res.status(200).json(req.session);
+})
 
 router.delete('/session', (req: Request, res: Response) => {
 
